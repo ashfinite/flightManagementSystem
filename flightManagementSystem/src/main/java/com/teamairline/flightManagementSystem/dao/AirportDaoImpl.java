@@ -9,7 +9,8 @@ import com.teamairline.flightManagementSystem.bean.Airport;
 @Service
 public class AirportDaoImpl implements AirportDao {
 
-	@Autowired
+
+    @Autowired
     private AirportRepository repository;
 
     @Override
@@ -31,6 +32,12 @@ public class AirportDaoImpl implements AirportDao {
     public List<String> findAllAirportCodes() {
         return repository.findAllAirportCodes();
     }
+
+    @Override
+    public List<String> findAllAirportLocations() {
+        return repository.findAllAirportLocations();
+        }
+    
 
     @Override
     public String findAirportCodeByLocation(String location) {

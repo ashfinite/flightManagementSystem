@@ -32,16 +32,25 @@ public class RouteDaoImpl implements RouteDao {
     }
 
     @Override
-    public Long findRouteBySourceAndDestination(String source, String destination) {
+    public Route findRouteBySourceAndDestination(String source, String destination) {
         return repository.findRouteBySourceAndDestination(source, destination);
     }
 
     @Override
     public Long generateRouteId() {
-        Long lastRouteId = repository.findLastRouteId();
-        if (lastRouteId == null) {
-            return 101L;
+        Long val = repository.findLastRouteId();
+        if (val == null) {
+            val = 101L;
+        } else {
+            val = val + 1;
         }
-        return lastRouteId + 1;
+        return val;
     }
+
+    @Override
+    public List<Long> findAllRoutesId() {
+        return repository.findAllRoutesId();
+    }
+
+
 }
