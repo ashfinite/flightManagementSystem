@@ -7,7 +7,6 @@ import javax.persistence.Id;
 @Entity
 public class Airport {
 	
-	
 	public Airport() {
 			}
 	
@@ -38,7 +37,6 @@ public class Airport {
 
 	@Override
 	public String toString() {
-		return "Airport [airportCode=" + airportCode + ", airportLocation=" + airportLocation +"]";
+		return "Airport [airportCode=" + airportCode + ", airportLocation=" + airportLocation + "]";
 	}
-
 }

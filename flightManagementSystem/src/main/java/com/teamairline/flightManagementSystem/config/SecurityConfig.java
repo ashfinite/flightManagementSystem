@@ -12,8 +12,8 @@ import com.teamairline.flightManagementSystem.service.FlightUserService;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter
-{
+public class SecurityConfig extends WebSecurityConfigurerAdapter  {
+
 	@Autowired
 	private FlightUserService service;
 	
@@ -26,13 +26,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	protected void configure(AuthenticationManagerBuilder authority) throws Exception {
 			authority.userDetailsService(service).passwordEncoder(config.passwordEncoder());
 	}
-	@Override
+	/*@Override
 	public void configure(HttpSecurity http ) throws Exception
 	{
-	http.authorizeRequests().antMatchers("/register").permitAll().anyRequest().authenticated().and().formLogin().loginPage("/loginpage")
+	http.authorizeRequests()
+    .antMatchers("/register", "/images/**", "/css/**", "/js/**", "/assets/**").permitAll()
+.anyRequest().authenticated().and().formLogin().loginPage("/loginpage")
 	.failureUrl("/loginerror").loginProcessingUrl("/login")
 	.permitAll().and().logout().logoutSuccessUrl("/index");
  http.csrf().disable();		
+	}*/
+	@Override
+	public void configure(HttpSecurity http) throws Exception {
+	    http.authorizeRequests()
+	        .antMatchers("/register", "/images/**", "/css/**", "/js/**", "/assets/**").permitAll()
+	        .anyRequest().authenticated()
+	        .and()
+	        .formLogin()
+	            .loginPage("/loginpage")
+	            .failureUrl("/loginerror")
+	            .loginProcessingUrl("/login")
+	            .defaultSuccessUrl("/loginsuccess", true)
+	            .permitAll()
+	        .and()
+	        .logout()
+	            .logoutSuccessUrl("/index");
+	    http.csrf().disable();
 	}
-	
+
 }

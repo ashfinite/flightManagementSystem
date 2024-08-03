@@ -5,7 +5,12 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.teamairline.flightManagementSystem.bean.Ticket;
 
-public interface TicketRepository extends JpaRepository<Ticket ,Long>{
-	@Query("select max(ticketNumber) from Ticket")
-	public Long findLastTicketNumber();
-}
+import java.util.List;
+
+public interface TicketRepository extends JpaRepository<Ticket, Long> {
+    @Query("select max(ticketNumber) from Ticket")
+    Long findLastTicketNumber();
+
+    List<Ticket> findAllByUsername(String username); //
+    Ticket findByTicketNumber(Long ticketNumber);//
+    List<Ticket> findTicketsByUsername(String username);}

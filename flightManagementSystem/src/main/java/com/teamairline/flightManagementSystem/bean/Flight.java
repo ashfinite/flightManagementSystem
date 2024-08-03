@@ -1,34 +1,41 @@
 package com.teamairline.flightManagementSystem.bean;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+
 @Entity
 public class Flight {
-	
-	@Id
+
+    @Id
     private Long flightNumber;
     private String carrierName;
     private Long routeId;
     private Integer seatCapacity;
     private String departure;
     private String arrival;
-    private Integer seatBooked;
+    
+    private String imageUrl; // URL for the flight image or airline's logo
 
     public Flight() {
-        super();
+        super(); // Default constructor
     }
 
-    public Flight(Long flightNumber, String carrierName, Long routeId, Integer seatCapacity, String departure, String arrival) {
-        super();
-        this.flightNumber = flightNumber;
-        this.carrierName = carrierName;
-        this.routeId = routeId;
-        this.seatCapacity = seatCapacity;
-        this.departure = departure;
-        this.arrival = arrival;
-        this.seatBooked=0;
-    }
+    // Constructor with imageUrl field
+    
+    public Flight(Long flightNumber, String carrierName, Long routeId, Integer seatCapacity, String departure,
+			String arrival,  String imageUrl) {
+		super();
+		this.flightNumber = flightNumber;
+		this.carrierName = carrierName;
+		this.routeId = routeId;
+		this.seatCapacity = seatCapacity;
+		this.departure = departure;
+		this.arrival = arrival;
+		
+		this.imageUrl = imageUrl;
+	}
 
-    // Getters and Setters
+	
 
     public Long getFlightNumber() {
         return flightNumber;
@@ -78,21 +85,13 @@ public class Flight {
         this.arrival = arrival;
     }
 
-    public Integer getSeatBooked() {
-		return seatBooked;
-	}
+  
 
-	public void setSeatBooked(Integer seatBooked) {
-		this.seatBooked = seatBooked;
-	}
+	public String getImageUrl() {
+        return imageUrl;
+    }
 
-	@Override
-	public String toString() {
-		return "Flight [flightNumber=" + flightNumber + ", carrierName=" + carrierName + ", routeId=" + routeId
-				+ ", seatCapacity=" + seatCapacity + ", departure=" + departure + ", arrival=" + arrival
-				+ ", seatBooked=" + seatBooked + "]";
-	}
-
-	
-
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }

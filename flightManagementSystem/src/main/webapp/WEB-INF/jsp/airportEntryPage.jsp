@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="header.jsp" %>
 <div class="pcoded-content">
     <!-- Page-header start -->
@@ -8,7 +9,7 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">New Airport Registry</h5>
+                        <h5 class="m-b-10">Add New Airport</h5>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -64,4 +65,9 @@
         </div>
     </div>
 </div>
+<c:if test="${not empty message}">
+    <script type="text/javascript">
+        alert("${message}");
+    </script>
+</c:if>
 <%@ include file="footer.jsp" %>

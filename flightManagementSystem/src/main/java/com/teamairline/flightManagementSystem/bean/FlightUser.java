@@ -6,10 +6,13 @@ import org.springframework.security.core.userdetails.User;
 import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Collection; 
+import java.util.Collection;
+import javax.persistence.Table;
 
+; 
 
 @Entity
+@Table(name = "flight_user")
 public class FlightUser extends User
 {
 	@Id

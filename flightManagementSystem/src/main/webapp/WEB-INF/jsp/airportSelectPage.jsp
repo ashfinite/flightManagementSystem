@@ -10,7 +10,7 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">New Airport Registry</h5>
+                        <h5 class="m-b-10">Airport Select</h5>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -19,7 +19,7 @@
                             <a href="dashboard.php"><i class="fa fa-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">Airport</a></li>
-                        <li class="breadcrumb-item"><a href="#!">Add Airport</a></li>
+                        <li class="breadcrumb-item"><a href="#!">Select Airport</a></li>
                     </ul>
                 </div>
             </div>

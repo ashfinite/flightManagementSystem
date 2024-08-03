@@ -1,16 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="header.jsp" %>
-<script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-        var alertSuccessMessage = document.getElementById('alert-success-message');
-        if (alertSuccessMessage) {
-            setTimeout(function() {
-                alertSuccessMessage.style.display = 'none';
-            }, 5000); // Hide after 5 seconds
-        }
-    });
-</script>
+
 <div class="pcoded-content">
 
     <!-- Page-header start -->
@@ -38,10 +29,12 @@
     <!-- Page-header end -->
 
     <div class="pcoded-inner-content">
-        <!-- Main-body start --><c:if test="${not empty message}">
-                        <div id="alert-success-message" class="alert alert-success" role="alert">
-                            ${message}
-                        </div>
+        <!-- Main-body start -->
+        
+	<c:if test="${not empty message}">
+                        <script type="text/javascript">
+                alert("${message}");
+            </script>
                     </c:if>
         <div class="main-body">
             <div class="page-wrapper">
@@ -79,7 +72,7 @@
                                                         <td>${status.index + 1}</td>
                                                         <td>${airport.airportCode}</td>
                                                         <td>${airport.airportLocation}</td>
-                                                        <td><a href="/airportshow?id=${airport.airportCode}" class="btn btn-primary btn-sm">Enquire</a></td>
+                                                        <td><a href="/airportshow?id=${airport.airportCode}" >Enquire</a></td>
                                                         <td>
                                                             <a href="/editAirportForm?id=${airport.airportCode}" class="btn btn-primary btn-sm">Edit</a>
                                                             <a href="/deleteAirport?id=${airport.airportCode}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this airport?');">Delete</a>
@@ -103,6 +96,3 @@
 
 <%@ include file="footer.jsp" %>
 
-
-
-    

@@ -4,9 +4,8 @@ import com.teamairline.flightManagementSystem.bean.Airport;
 
 import java.util.List;
 
-public interface AirportDao 
-{
-    void addAirport(Airport airport);
+public interface AirportDao {
+	void addAirport(Airport airport);
     List<Airport> findAllAirports();
     Airport findAirportById(String id);
     List<String> findAllAirportCodes();
@@ -15,6 +14,6 @@ public interface AirportDao
     String findAirportCodeByLocation(String location);
     void updateAirport(Airport airport);
     void deleteAirport(String id);
-	
-	
+    long countAirports();
+
 }

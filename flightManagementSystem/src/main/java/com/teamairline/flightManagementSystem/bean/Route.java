@@ -1,11 +1,14 @@
 package com.teamairline.flightManagementSystem.bean;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 import javax.persistence.Id;
 
 @Entity
 public class Route {
+
     
     @Id
      private Long routeId;
@@ -25,44 +28,36 @@ public class Route {
         this.fair = fair;
     }
 
-	public Long getRouteId() {
-		return routeId;
-	}
+    // Getters and Setters
+    public Long getRouteId() {
+        return routeId;
+    }
 
-	public void setRouteId(Long routeId) {
-		this.routeId = routeId;
-	}
+    public void setRouteId(Long routeId) {
+        this.routeId = routeId;
+    }
 
-	public String getSourceAirportCode() {
-		return sourceAirportCode;
-	}
+    public String getSourceAirportCode() {
+        return sourceAirportCode;
+    }
 
-	public void setSourceAirportCode(String sourceAirportCode) {
-		this.sourceAirportCode = sourceAirportCode;
-	}
+    public void setSourceAirportCode(String sourceAirportCode) {
+        this.sourceAirportCode = sourceAirportCode;
+    }
 
-	public String getDestinationAirportCode() {
-		return destinationAirportCode;
-	}
+    public String getDestinationAirportCode() {
+        return destinationAirportCode;
+    }
 
-	public void setDestinationAirportCode(String destinationAirportCode) {
-		this.destinationAirportCode = destinationAirportCode;
-	}
+    public void setDestinationAirportCode(String destinationAirportCode) {
+        this.destinationAirportCode = destinationAirportCode;
+    }
 
-	public Double getFair() {
-		return fair;
-	}
+    public Double getFair() {
+        return fair;
+    }
 
-	public void setFair(Double fair) {
-		this.fair = fair;
-	}
-
-	@Override
-	public String toString() {
-		return "Route [routeId=" + routeId + ", sourceAirportCode=" + sourceAirportCode + ", destinationAirportCode="
-				+ destinationAirportCode + ", fair=" + fair + "]";
-	}
-
-   
-
+    public void setFair(Double fair) {
+        this.fair = fair;
+    }
 }

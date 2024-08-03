@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Registration Page with HD Flight Background</title>
+<title>Registration Page</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <style>
@@ -17,19 +17,20 @@
   }
   .vh-100 {
     height: 100vh;
-    background-color: #ADD8E6; /* Background color covering the entire viewport */
+    background-color: #ADD8E6;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .login-bg {
-    background: url('https://i.pinimg.com/564x/40/cf/29/40cf29baf3cb3a5386404831e0bab32b.jpg') no-repeat center center;
+    background: url('/assets/images/login.jpg') no-repeat center center;
     background-size: cover;
     border-radius: 1rem 0 0 1rem;
     animation: fadeIn 2s ease-in-out;
   }
   .card {
     border-radius: 1rem;
+    max-width: 900px;
     margin: auto;
   }
   .login-form {
@@ -103,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <section class="vh-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col col-xl-10">
+      <div class="col-12">
         <div class="card">
           <div class="row g-0">
             <div class="col-md-6 col-lg-5 d-none d-md-block login-bg"></div>
@@ -122,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <form:select path="type" id="type" class="form-control form-control-lg" required="true">
                       <form:option value="" label="Select type" disabled="true" selected="true"/>
                       <form:option value="admin" label="Admin"/>
-                      <form:option value="user" label="User"/>
+                      <form:option value="customer" label="Customer"/>
                     </form:select>
                   </div>
                   <div class="form-group">

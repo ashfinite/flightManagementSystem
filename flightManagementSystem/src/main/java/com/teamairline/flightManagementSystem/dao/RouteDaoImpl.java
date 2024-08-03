@@ -1,18 +1,15 @@
 package com.teamairline.flightManagementSystem.dao;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.teamairline.flightManagementSystem.bean.Route;
-import com.teamairline.flightManagementSystem.dao.RouteDao;
-import com.teamairline.flightManagementSystem.dao.RouteRepository;
 
-
+import java.util.List;
 
 @Repository
 public class RouteDaoImpl implements RouteDao {
+
     @Autowired
     private RouteRepository repository;
 
@@ -32,7 +29,7 @@ public class RouteDaoImpl implements RouteDao {
     }
 
     @Override
-    public Route findRouteBySourceAndDestination(String source, String destination) {
+    public com.teamairline.flightManagementSystem.bean.Route findRouteBySourceAndDestination(String source, String destination) {
         return repository.findRouteBySourceAndDestination(source, destination);
     }
 
@@ -52,5 +49,12 @@ public class RouteDaoImpl implements RouteDao {
         return repository.findAllRoutesId();
     }
 
-
+    @Override
+    public void delete(Long routeId) {
+        repository.deleteById(routeId);
+    }
+    @Override
+    public long countRoutes() {
+        return repository.count(); // Implementing the count method
+    }
 }

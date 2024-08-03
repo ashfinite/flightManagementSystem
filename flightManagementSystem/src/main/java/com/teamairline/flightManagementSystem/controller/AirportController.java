@@ -1,9 +1,12 @@
 package com.teamairline.flightManagementSystem.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,17 +14,72 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.teamairline.flightManagementSystem.bean.Airport;
 import com.teamairline.flightManagementSystem.dao.AirportDao;
-import java.util.List;
+import com.teamairline.flightManagementSystem.dao.FeedbackDao;
+import com.teamairline.flightManagementSystem.dao.FlightDao;
+import com.teamairline.flightManagementSystem.dao.RouteDao;
+import com.teamairline.flightManagementSystem.dao.TicketDao;
+import com.teamairline.flightManagementSystem.service.FlightUserService;
+
 
 @RestController
-public class AirportController 
-{ 
-	@Autowired
-    private AirportDao airportDao;
+public class AirportController {
 
+    @Autowired
+    private AirportDao airportDao;
+    
+    @Autowired
+    private FlightUserService service;
+    
+    @Autowired
+    private FlightDao flightDao;
+    
+    @Autowired
+    private RouteDao routeDao;
+    
+    @Autowired
+    private TicketDao ticketDao;
+    @Autowired
+    private FeedbackDao feedbackDao;
+    
     @GetMapping("/index")
-    public ModelAndView showIndexPage() {
-        return new ModelAndView("index");
+    public ModelAndView showDashboard(HttpServletRequest request) {
+        // Retrieve counts for various entities
+        long feedbackCount = feedbackDao.countFeedbacks();
+        long ticketCount = ticketDao.countTickets();
+        long routeCount = routeDao.countRoutes();
+        long flightCount = flightDao.countFlights();
+        long totalAirports = airportDao.countAirports();
+
+        // Retrieve the count of users of a specific type
+        String userType = "customer"; // Specify the type you want to count
+        long userCount = service.countUsersByType(userType);
+
+        // Get the logged-in username
+        String username = request.getUserPrincipal().getName();
+
+        // Create ModelAndView object and add all attributes
+        ModelAndView mv = new ModelAndView("index");
+        mv.addObject("feedbackCount", feedbackCount);
+        mv.addObject("ticketCount", ticketCount);
+        mv.addObject("routeCount", routeCount);
+        mv.addObject("flightCount", flightCount);
+        mv.addObject("totalAirports", totalAirports);
+        mv.addObject("userCount", userCount);
+        mv.addObject("userType", userType);
+        mv.addObject("username", username);
+
+        return mv;
+    }
+    @GetMapping("/about")
+    public ModelAndView showLoginErrorPage() {
+        return new ModelAndView("about");
+    }
+    @GetMapping("/index1")
+    public ModelAndView showIndex1Page(HttpServletRequest request) {
+        String username = request.getUserPrincipal().getName();
+        ModelAndView mv = new ModelAndView("index1");
+        mv.addObject("username", username);
+        return mv;
     }
 
     @GetMapping("/airport")
@@ -53,7 +111,7 @@ public class AirportController
         return mv;
     }
     
-   /*@GetMapping("/airport-select")
+   @GetMapping("/airport-select")
     public ModelAndView showAirportSelectPage() {
         List<String> codeList = airportDao.findAllAirportCodes();
         ModelAndView mv = new ModelAndView("airportSelectPage");
@@ -67,7 +125,7 @@ public class AirportController
         ModelAndView mv = new ModelAndView("airportShowPage");
         mv.addObject("airport", airport);
         return mv;
-    }*/
+    }
 
     @GetMapping("/airport-report")
     public ModelAndView showAirportReportPage(@RequestParam(value = "message", required = false) String message) {
@@ -103,4 +161,12 @@ public class AirportController
         mv.addObject("message", "Airport deleted successfully!");
         return mv;
     }
+    @GetMapping("/airport-count")
+    public ModelAndView showAirportCountPage() {
+        long totalAirports = airportDao.countAirports();
+        ModelAndView mv = new ModelAndView("index");
+        mv.addObject("totalAirports", totalAirports);
+        return mv;
+    }
+
 }

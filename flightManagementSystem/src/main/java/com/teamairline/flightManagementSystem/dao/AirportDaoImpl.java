@@ -2,13 +2,14 @@ package com.teamairline.flightManagementSystem.dao;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.teamairline.flightManagementSystem.bean.Airport;
+
 @Service
 public class AirportDaoImpl implements AirportDao {
-
 
     @Autowired
     private AirportRepository repository;
@@ -27,6 +28,10 @@ public class AirportDaoImpl implements AirportDao {
     public Airport findAirportById(String id) {
         return repository.findById(id).orElse(null);
     }
+    @Override
+    public long countAirports() {
+        return repository.count();
+    }
 
     @Override
     public List<String> findAllAirportCodes() {
@@ -36,9 +41,9 @@ public class AirportDaoImpl implements AirportDao {
     @Override
     public List<String> findAllAirportLocations() {
         return repository.findAllAirportLocations();
-        }
-    
+    }
 
+    
     @Override
     public String findAirportCodeByLocation(String location) {
         return repository.findAirportCodeByLocation(location);
@@ -55,5 +60,5 @@ public class AirportDaoImpl implements AirportDao {
     public void deleteAirport(String id) {
         repository.deleteById(id);
     }
-
-}
+    
+    }
